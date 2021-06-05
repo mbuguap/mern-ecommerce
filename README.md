@@ -23,3 +23,4 @@
 * Pagination
 * Dashboard with charts
 * Live Chats with Customers using socket.io
+* EMails using mailgun
