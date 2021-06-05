@@ -8,10 +8,10 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { readdirSync } = require('fs');
 
-// const productRouter = require('./routes/product');
-// const userRouter = require('./routes/user');
-// const orderRouter = require('./routes/order');
-// const uploadRouter = require('./routes/upload');
+const productRouter = require('./routes/product');
+const userRouter = require('./routes/user');
+const orderRouter = require('./routes/order');
+const uploadRouter = require('./routes/upload');
 
 dotenv.config();
 
@@ -31,12 +31,12 @@ mongoose
   .then(() => console.log('DB Connected'))
   .catch((err) => console.log(`DB Connection Error ${err}`));
 
-// app.use('/api/uploads', uploadRouter);
-// app.use('/api/users', userRouter);
-// app.use('/api/products', productRouter);
-// app.use('/api/orders', orderRouter);
+app.use('/api/uploads', uploadRouter);
+app.use('/api/users', userRouter);
+app.use('/api/products', productRouter);
+app.use('/api/orders', orderRouter);
 
-readdirSync('./routes').map((r) => app.use('/', require('./routes/' + r)));
+// readdirSync('./routes').map((r) => app.use('/api/', require('./routes/' + r)));
 
 app.get('/api/config/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
